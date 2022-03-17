@@ -3,7 +3,7 @@ const userDao = require('../dao/userDao');
 const hashUtil = require('../lib/hashUtil');
 
 const service = {
-  // 회원가입 정보 입력
+  // user 입력
   async reg(params) {
     let inserted = null;
 
@@ -11,6 +11,7 @@ const service = {
     let hashPassword = null;
     try {
       hashPassword = await hashUtil.makePasswordHash(params.password);
+      // hashUtil에서 암호화 할 암호 넣어줌
       logger.debug(`(userService.makePassword) ${JSON.stringify(params.password)}`);
     } catch (err) {
       logger.error(`(userService.makePassword) ${err.toString()}`);
@@ -18,11 +19,13 @@ const service = {
         reject(err);
       });
     }
+
     // 2. 사용자 등록 처리
     const newParams = {
       ...params,
-      userPassword: hashPassword,
+      password: hashPassword,
     };
+
     try {
       inserted = await userDao.insert(newParams);
       logger.debug(`(userService.reg) ${JSON.stringify(inserted)}`);
@@ -38,7 +41,6 @@ const service = {
       resolve(inserted);
     });
   },
-
   // selectList
   async list(params) {
     let result = null;
@@ -57,45 +59,103 @@ const service = {
       resolve(result);
     });
   },
+  // selectInfo
+  async info(params) {
+    let result = null;
+
+    try {
+      result = await userDao.selectInfo(params);
+      logger.debug(`(userService.info) ${JSON.stringify(result)}`);
+    } catch (err) {
+      logger.error(`(userService.info) ${err.toString()}`);
+      return new Promise((resolve, reject) => {
+        reject(err);
+      });
+    }
+
+    return new Promise((resolve) => {
+      resolve(result);
+    });
+  },
+  // update
+  async edit(params) {
+    let result = null;
+
+    try {
+      result = await userDao.update(params);
+      logger.debug(`(userService.edit) ${JSON.stringify(result)}`);
+    } catch (err) {
+      logger.error(`(userService.edit) ${err.toString()}`);
+      return new Promise((resolve, reject) => {
+        reject(err);
+      });
+    }
+
+    return new Promise((resolve) => {
+      resolve(result);
+    });
+  },
+  // delete
+  async delete(params) {
+    let result = null;
+
+    try {
+      result = await userDao.delete(params);
+      logger.debug(`(departmentService.delete) ${JSON.stringify(result)}`);
+    } catch (err) {
+      logger.error(`(departmentService.delete) ${err.toString()}`);
+      return new Promise((resolve, reject) => {
+        reject(err);
+      });
+    }
+
+    return new Promise((resolve) => {
+      resolve(result);
+    });
+  },
+
   // login 프로세스
   async login(params) {
-  // 1. 사용자 조회
     let user = null;
+    // 1. 사용자 조회
     try {
       user = await userDao.selectUser(params);
       logger.debug(`(userService.login) ${JSON.stringify(user)}`);
 
       // 해당 사용자가 없는 경우 튕겨냄
       if (!user) {
-        const err = new Error('Incorect userid or password');
+        const err = new Error('incorrect userid or password');
+        // 보안을 위해 <id '나' password가 틀렸다> 라고 적어줌
         logger.error(err.toString());
 
         return new Promise((resolve, reject) => {
           reject(err);
         });
       }
-    } catch (err) {
+    } catch (err) { // 기존 에러코드들과 동일
       logger.error(`(userService.login) ${err.toString()}`);
       return new Promise((resolve, reject) => {
         reject(err);
       });
     }
 
-    // 2. 비밀번호 비교
+    // 2. 비밀번호 검증
     try {
       const checkPassword = await hashUtil.checkPasswordHash(params.password, user.password);
       logger.debug(`(userService.checkPassword) ${checkPassword}`);
+      console.log('비밀번호 검증', params.password, user.password);
 
       // 비밀번호 틀린 경우 튕겨냄
       if (!checkPassword) {
-        const err = new Error('Incorect userid or password1');
+        const err = new Error('incorrect userid or password');
+        // 보안을 위해 <id '나' password가 틀렸다> 라고 적어줌
         logger.error(err.toString());
 
         return new Promise((resolve, reject) => {
           reject(err);
         });
       }
-    } catch (err) {
+    } catch (err) { // 기존 에러코드들과 동일
       logger.error(`(userService.checkPassword) ${err.toString()}`);
       return new Promise((resolve, reject) => {
         reject(err);
@@ -106,7 +166,6 @@ const service = {
       resolve(user);
     });
   },
-
 };
 
 module.exports = service;

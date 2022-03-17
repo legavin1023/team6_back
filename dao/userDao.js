@@ -3,6 +3,22 @@ const { User } = require('../models/index');
 const logger = require('../lib/logger');
 
 const dao = {
+  // 로그인을 위한 사용자 조회
+  selectUser(params) {
+    return new Promise((resolve, reject) => {
+      User.findOne({ // 하나만 찾아줌
+        attributes: ['id', 'userid', 'password', 'name'],
+        // 토큰 생성에서 발행한 항목
+        where: { userid: params.userid },
+        // findOne이 찾을 항목 : userid(id로 대조)
+      }).then((selectOne) => {
+        resolve(selectOne);
+      }).catch((err) => {
+        reject(err);
+      });
+    });
+  },
+
   // 등록
   insert(params) {
     return new Promise((resolve, reject) => {
@@ -16,18 +32,7 @@ const dao = {
       });
     });
   },
-  selectUser(params) {
-    return new Promise((resolve, reject) => {
-      User.findOne({
-        attributes: ['userid', 'password'],
-        where: { userid: params.userid },
-      }).then((selectedOne) => {
-        resolve(selectedOne);
-      }).catch((err) => {
-        reject(err);
-      });
-    });
-  },
+
   // 리스트 조회
   selectList(params) {
     // where 검색 조건
@@ -65,17 +70,19 @@ const dao = {
       });
     });
   },
-  // 회원가입 아이디 중복 체크
-  idOverlabCheck(params) {
-    return new Promise((resolve, reject) => {
-      User.findOne({ where: { userId: params.userId } })
-        .then((idCheckResult) => {
-          resolve(idCheckResult);
-        }).catch((err) => {
-          reject(err);
-        });
-    });
-  },
+
+  // // 회원가입 아이디 중복 체크
+  // idOverlabCheck(params) {
+  //   return new Promise((resolve, reject) => {
+  //     User.findOne({ where: { userId: params.userId } })
+  //       .then((idCheckResult) => {
+  //         resolve(idCheckResult);
+  //       }).catch((err) => {
+  //         reject(err);
+  //       });
+  //   });
+  // },
+
   // 상세정보 조회
   selectInfo(params) {
     return new Promise((resolve, reject) => {
@@ -91,6 +98,7 @@ const dao = {
       });
     });
   },
+
   // 수정
   update(params) {
     return new Promise((resolve, reject) => {
@@ -107,6 +115,7 @@ const dao = {
       });
     });
   },
+
   // 삭제
   delete(params) {
     return new Promise((resolve, reject) => {

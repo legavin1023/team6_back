@@ -2,6 +2,7 @@ const express = require('express');
 
 const router = express.Router();
 const logger = require('../lib/logger');
+// const { isLoggedIn } = require('../lib/middleware');
 const userService = require('../service/userService');
 
 // 등록
@@ -19,7 +20,7 @@ router.post('/', async (req, res) => {
 
     // 입력값 null 체크
     if (!params.name || !params.userid || !params.password) {
-      const err = new Error('Not allowed null (userid, name, password)');
+      const err = new Error('Not allowed null (name, userid, password)');
       logger.error(err.toString());
 
       res.status(500).json({ err: err.toString() });
@@ -40,9 +41,8 @@ router.post('/', async (req, res) => {
 router.get('/', async (req, res) => {
   try {
     const params = {
-      userid: req.query.userid,
       name: req.query.name,
-
+      userid: req.query.userid,
     };
     logger.info(`(user.list.params) ${JSON.stringify(params)}`);
 
@@ -55,5 +55,64 @@ router.get('/', async (req, res) => {
     res.status(500).json({ err: err.toString() });
   }
 });
+
+// // 상세정보 조회
+// router.get('/:id', async (req, res) => {
+//   try {
+//     const params = {
+//       id: req.params.id,
+//     };
+//     logger.info(`(user.info.params) ${JSON.stringify(params)}`);
+
+//     const result = await userService.info(params);
+//     logger.info(`(user.info.result) ${JSON.stringify(result)}`);
+
+//     // 최종 응답
+//     res.status(200).json(result);
+//   } catch (err) {
+//     res.status(500).json({ err: err.toString() });
+//   }
+// });
+
+// // 수정
+// router.put('/:id', async (req, res) => {
+//   try {
+//     const params = { // userid, password는 수정하면 안되니까 빼준다
+//       id: req.params.id,
+//       departmentId: req.body.departmentId,
+//       name: req.body.name,
+//       role: req.body.role,
+//       email: req.body.email,
+//       phone: req.body.phone,
+//     };
+//     logger.info(`(department.update.params) ${JSON.stringify(params)}`);
+
+//     const result = await userService.edit(params);
+//     logger.info(`(department.update.result) ${JSON.stringify(result)}`);
+
+//     // 최종 응답
+//     res.status(200).json(result);
+//   } catch (err) {
+//     res.status(500).json({ err: err.toString() });
+//   }
+// });
+
+// // 삭제
+// router.delete('/:id', async (req, res) => {
+//   try {
+//     const params = {
+//       id: req.params.id,
+//     };
+//     logger.info(`(department.delete.params) ${JSON.stringify(params)}`);
+
+//     const result = await userService.delete(params);
+//     logger.info(`(department.delete.result) ${JSON.stringify(result)}`);
+
+//     // 최종 응답
+//     res.status(200).json(result);
+//   } catch (err) {
+//     res.status(500).json({ err: err.toString() });
+//   }
+// });
 
 module.exports = router;
