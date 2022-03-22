@@ -9,8 +9,8 @@ const userService = require('../service/userService');
 router.post('/token', async (req, res) => {
   try {
     const params = {
-      userid: req.body.userid,
-      password: req.body.password,
+      userid: req.body.loginId,
+      password: req.body.loginPw,
     };
     logger.info(`(auth.token.params) ${JSON.stringify(params)}`);
 

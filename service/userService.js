@@ -143,7 +143,7 @@ const service = {
     try {
       const checkPassword = await hashUtil.checkPasswordHash(params.password, user.password);
       logger.debug(`(userService.checkPassword) ${checkPassword}`);
-      console.log('비밀번호 검증', params.password, user.password);
+      // console.log('비밀번호 검증', params.password, user.password);
 
       // 비밀번호 틀린 경우 튕겨냄
       if (!checkPassword) {
