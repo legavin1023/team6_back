@@ -2,6 +2,7 @@ const express = require('express');
 const logger = require('../lib/logger');
 const userRouter = require('./user');
 const authRouter = require('./auth');
+const dashboardRouter = require('./dashboard');
 
 const router = express.Router();
 
@@ -24,5 +25,6 @@ router.get('/log-test', (req, res, next) => {
 // 라우터 등록
 router.use('/users', userRouter);
 router.use('/auths', authRouter);
+router.use('/dashboard', dashboardRouter);
 
 module.exports = router;
