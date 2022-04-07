@@ -19,6 +19,9 @@ log/*
 log
 *.log
 
+# Portable Network Graphics
+*.png
+
 # Editor directories and files
 .idea
 .vscode
