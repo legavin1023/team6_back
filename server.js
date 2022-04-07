@@ -4,7 +4,15 @@ socket.emit('이벤트명', Data) : 이벤트명 지정, 데이터 보냄 */
 
 const app = require('express')();
 const http = require('http').createServer(app);
-const io = require('socket.io')(http);
+const io = require('socket.io')(http, {
+  cors: {
+    origin: ['http://localhost:8080'],
+    methods: ['GET', 'POST'],
+    transports: ['websocket', 'polling'],
+    credentials: true,
+  },
+  allowEI03: true,
+});
 
 const port = 3001; // port 3001번으로 서버 실행
 http.listen(port, () => {
