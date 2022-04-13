@@ -79,6 +79,7 @@ router.put('/:id', async (req, res) => {
   try {
     const params = {
       id: req.params.id,
+      manager: req.body.manager,
       date: req.body.date,
       productsAll: req.body.productsAll,
       productsGood: req.body.productsGood,
