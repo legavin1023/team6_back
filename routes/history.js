@@ -8,6 +8,7 @@ const historyService = require('../service/historyService');
 router.post('/', async (req, res) => {
   try {
     const params = {
+      manager: req.body.manager,
       date: req.body.date,
       productsAll: req.body.productsAll,
       productsGood: req.body.productsGood,
