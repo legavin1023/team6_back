@@ -29,7 +29,7 @@ router.post('/token', async (req, res) => {
     // 토큰 생성
     const token = tokenUtil.makeToken(result);
     res.set('token', token); // header 세팅
-    
+
     // 최종 응답
     res.status(200).json({ token });
   } catch (err) {

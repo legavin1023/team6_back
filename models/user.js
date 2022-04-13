@@ -34,4 +34,8 @@ module.exports = class User extends Sequelize.Model {
       paranoid: true, // deletedAt
     });
   }
+
+  static associate(db) {
+    db.User.hasMany(db.History, { foreignKey: { name: 'userId', onDelete: 'SET NULL', as: 'Historys' } });
+  }
 };
