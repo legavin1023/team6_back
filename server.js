@@ -1,17 +1,15 @@
-/* 기본적인 함수 설명
-socket.on('이벤트명', callback function) : 해당 이벤트를 받고 콜백함수 실행
-socket.emit('이벤트명', Data) : 이벤트명 지정, 데이터 보냄 */
+// /* 기본적인 함수 설명
+// socket.on('이벤트명', callback function) : 해당 이벤트를 받고 콜백함수 실행
+// socket.emit('이벤트명', Data) : 이벤트명 지정, 데이터 보냄 */
 
 // const app = require('express')();
 // const http = require('http').createServer(app);
 // const io = require('socket.io')(http, {
 //   cors: {
-//     origin: ['http://localhost:8080'],
-//     methods: ['GET', 'POST'],
-//     transports: ['websocket', 'polling'],
+//     origin: 'http://localhost:8080',
 //     credentials: true,
 //   },
-//   allowEI03: true,
+//   allowEIO3: true,
 // });
 
 // const port = 3001; // port 3001번으로 서버 실행
