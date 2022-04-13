@@ -55,69 +55,65 @@ router.get('/', async (req, res) => {
   }
 });
 
-// // 상세정보 조회
-// router.get('/:id', async (req, res) => {
-//   try {
-//     const params = {
-//       id: req.params.id,
-//     };
-//     logger.info(`(dashboard.info.params) ${JSON.stringify(params)}`);
+// 상세정보 조회
+router.get('/:id', async (req, res) => {
+  try {
+    const params = {
+      id: req.params.id,
+    };
+    logger.info(`(dashboard.info.params) ${JSON.stringify(params)}`);
 
-//     const result = await dashboardService.info(params);
-//     logger.info(`(dashboard.info.result) ${JSON.stringify(result)}`);
+    const result = await historyService.info(params);
+    logger.info(`(history.info.result) ${JSON.stringify(result)}`);
 
-//     // 최종 응답
-//     res.status(200).json(result);
-//   } catch (err) {
-//     res.status(500).json({ err: err.toString() });
-//   }
-// });
+    // 최종 응답
+    res.status(200).json(result);
+  } catch (err) {
+    res.status(500).json({ err: err.toString() });
+  }
+});
 
-// // 수정
-// router.put('/:id', async (req, res) => {
-//   try {
-//     const params = {
-//       xcoordinate: req.body.xcoordinate,
-//       ycoordinate: req.body.ycoordinate,
-//       dayoutput: req.body.dayoutput,
-//       errorpercent: req.body.errorpercent,
-//       dicenum: req.body.dicenum,
-//       time: req.body.time,
-//       start: req.body.start,
-//       end: req.body.end,
-//       errorproducts: req.body.errorproducts,
-//       goodproducts: req.body.goodproducts,
-//       oddnum: req.body.oddnum,
-//       evennum: req.body.evennum,
-//     };
-//     logger.info(`(dashboard.update.params) ${JSON.stringify(params)}`);
+// 수정
+router.put('/:id', async (req, res) => {
+  try {
+    const params = {
+      id: req.params.id,
+      date: req.body.date,
+      productsAll: req.body.productsAll,
+      productsGood: req.body.productsGood,
+      productsError: req.body.productsError,
+      remarks: req.body.remarks,
+      startAt: req.body.startAt,
+      endAt: req.body.endAt,
+    };
+    logger.info(`(history.update.params) ${JSON.stringify(params)}`);
 
-//     const result = await dashboardService.edit(params);
-//     logger.info(`(dashboard.update.result) ${JSON.stringify(result)}`);
+    const result = await historyService.edit(params);
+    logger.info(`(history.update.result) ${JSON.stringify(result)}`);
 
-//     // 최종 응답
-//     res.status(200).json(result);
-//   } catch (err) {
-//     res.status(500).json({ err: err.toString() });
-//   }
-// });
+    // 최종 응답
+    res.status(200).json(result);
+  } catch (err) {
+    res.status(500).json({ err: err.toString() });
+  }
+});
 
-// // 삭제
-// router.delete('/:id', async (req, res) => {
-//   try {
-//     const params = {
-//       id: req.params.id,
-//     };
-//     logger.info(`(dashboard.delete.params) ${JSON.stringify(params)}`);
+// 삭제
+router.delete('/:id', async (req, res) => {
+  try {
+    const params = {
+      id: req.params.id,
+    };
+    logger.info(`(history.delete.params) ${JSON.stringify(params)}`);
 
-//     const result = await dashboardService.delete(params);
-//     logger.info(`(dashboard.delete.result) ${JSON.stringify(result)}`);
+    const result = await historyService.delete(params);
+    logger.info(`(history.delete.result) ${JSON.stringify(result)}`);
 
-//     // 최종 응답
-//     res.status(200).json(result);
-//   } catch (err) {
-//     res.status(500).json({ err: err.toString() });
-//   }
-// });
+    // 최종 응답
+    res.status(200).json(result);
+  } catch (err) {
+    res.status(500).json({ err: err.toString() });
+  }
+});
 
 module.exports = router;

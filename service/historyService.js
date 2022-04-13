@@ -38,60 +38,60 @@ const service = {
       resolve(result);
     });
   },
-  // // selectInfo
-  // async info(params) {
-  //   let result = null;
+  // selectInfo
+  async info(params) {
+    let result = null;
 
-  //   try {
-  //     result = await dashboardDao.selectInfo(params);
-  //     logger.debug(`(dashboardService.info) ${JSON.stringify(result)}`);
-  //   } catch (err) {
-  //     logger.error(`(dashboardService.info) ${err.toString()}`);
-  //     return new Promise((resolve, reject) => {
-  //       reject(err);
-  //     });
-  //   }
+    try {
+      result = await historyDao.selectInfo(params);
+      logger.debug(`(historyService.info) ${JSON.stringify(result)}`);
+    } catch (err) {
+      logger.error(`(historyService.info) ${err.toString()}`);
+      return new Promise((resolve, reject) => {
+        reject(err);
+      });
+    }
 
-  //   return new Promise((resolve) => {
-  //     resolve(result);
-  //   });
-  // },
-  // // update
-  // async edit(params) {
-  //   let result = null;
+    return new Promise((resolve) => {
+      resolve(result);
+    });
+  },
+  // update
+  async edit(params) {
+    let result = null;
 
-  //   try {
-  //     result = await dashboardDao.update(params);
-  //     logger.debug(`(dashboardService.edit) ${JSON.stringify(result)}`);
-  //   } catch (err) {
-  //     logger.error(`(dashboardService.edit) ${err.toString()}`);
-  //     return new Promise((resolve, reject) => {
-  //       reject(err);
-  //     });
-  //   }
+    try {
+      result = await historyDao.update(params);
+      logger.debug(`(historyService.edit) ${JSON.stringify(result)}`);
+    } catch (err) {
+      logger.error(`(historyService.edit) ${err.toString()}`);
+      return new Promise((resolve, reject) => {
+        reject(err);
+      });
+    }
 
-  //   return new Promise((resolve) => {
-  //     resolve(result);
-  //   });
-  // },
-  // // delelte
-  // async delete(params) {
-  //   let result = null;
+    return new Promise((resolve) => {
+      resolve(result);
+    });
+  },
+  // delelte
+  async delete(params) {
+    let result = null;
 
-  //   try {
-  //     result = await dashboardDao.delete(params);
-  //     logger.debug(`(dashboardService.delete) ${JSON.stringify(result)}`);
-  //   } catch (err) {
-  //     logger.error(`(dashboardService.delete) ${err.toString()}`);
-  //     return new Promise((resolve, reject) => {
-  //       reject(err);
-  //     });
-  //   }
+    try {
+      result = await historyDao.delete(params);
+      logger.debug(`(historyService.delete) ${JSON.stringify(result)}`);
+    } catch (err) {
+      logger.error(`(historyService.delete) ${err.toString()}`);
+      return new Promise((resolve, reject) => {
+        reject(err);
+      });
+    }
 
-  //   return new Promise((resolve) => {
-  //     resolve(result);
-  //   });
-  // },
+    return new Promise((resolve) => {
+      resolve(result);
+    });
+  },
 };
 
 module.exports = service;
