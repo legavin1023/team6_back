@@ -107,7 +107,7 @@ const dao = {
         {
           where: { id: params.id },
         },
-        logger.info(`(userService.edit아이디가없다?) ${JSON.stringify(params.id)}`),
+        logger.info(`(userService.edit) ${JSON.stringify(params.id)}`),
       ).then(([updated]) => {
         resolve({ updatedCount: updated });
       }).catch((err) => {

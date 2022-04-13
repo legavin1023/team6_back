@@ -38,23 +38,23 @@ router.post('/', async (req, res) => {
 });
 
 // 리스트 조회
-// router.get('/', async (req, res) => {
-//   try {
-//     const params = {
-//       name: req.query.name,
-//       userid: req.query.userid,
-//     };
-//     logger.info(`(user.list.params) ${JSON.stringify(params)}`);
+router.get('/', async (req, res) => {
+  try {
+    const params = {
+      name: req.query.name,
+      userid: req.query.userid,
+    };
+    logger.info(`(user.list.params) ${JSON.stringify(params)}`);
 
-//     const result = await userService.list(params);
-//     logger.info(`(user.list.result) ${JSON.stringify(result)}`);
+    const result = await userService.list(params);
+    logger.info(`(user.list.result) ${JSON.stringify(result)}`);
 
-//     // 최종 응답
-//     res.status(200).json(result);
-//   } catch (err) {
-//     res.status(500).json({ err: err.toString() });
-//   }
-// });
+    // 최종 응답
+    res.status(200).json(result);
+  } catch (err) {
+    res.status(500).json({ err: err.toString() });
+  }
+});
 
 // // 상세정보 조회
 router.get('/:id', async (req, res) => {
@@ -82,6 +82,7 @@ router.put('/:id', async (req, res) => {
       name: req.body.name,
       email: req.body.email,
       phone: req.body.phone,
+      auth: req.body.auth,
     };
     logger.info(`(department.update.params) ${JSON.stringify(params)}`);
 
@@ -96,21 +97,21 @@ router.put('/:id', async (req, res) => {
 });
 
 // // 삭제
-// router.delete('/:id', async (req, res) => {
-//   try {
-//     const params = {
-//       id: req.params.id,
-//     };
-//     logger.info(`(department.delete.params) ${JSON.stringify(params)}`);
+router.delete('/:id', async (req, res) => {
+  try {
+    const params = {
+      id: req.params.id,
+    };
+    logger.info(`(department.delete.params) ${JSON.stringify(params)}`);
 
-//     const result = await userService.delete(params);
-//     logger.info(`(department.delete.result) ${JSON.stringify(result)}`);
+    const result = await userService.delete(params);
+    logger.info(`(department.delete.result) ${JSON.stringify(result)}`);
 
-//     // 최종 응답
-//     res.status(200).json(result);
-//   } catch (err) {
-//     res.status(500).json({ err: err.toString() });
-//   }
-// });
+    // 최종 응답
+    res.status(200).json(result);
+  } catch (err) {
+    res.status(500).json({ err: err.toString() });
+  }
+});
 
 module.exports = router;
