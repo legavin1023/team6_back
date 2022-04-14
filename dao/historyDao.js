@@ -16,12 +16,12 @@ const dao = {
   selectList(params) {
     // where 검색 조건
     const setQuery = {};
-    if (params.userid) {
-      setQuery.where = {
-        ...setQuery.where,
-        userid: { [Op.like]: `%${params.userid}%` }, // like검색
-      };
-    }
+    // if (params.manager) {
+    //   setQuery.where = {
+    //     ...setQuery.where,
+    //     manager: { [Op.like]: `%${params.manager}%` }, // like검색
+    //   };
+    // }
 
     // order by 정렬 조건
     setQuery.order = [['id', 'DESC']];
@@ -33,7 +33,7 @@ const dao = {
           {
             model: User,
             as: 'Users',
-            attributes: { exclude: ['password'] }, // password 필드 제외
+            attributes: ['userid', 'name'],
           },
         ],
       }).then((selectedList) => {
@@ -46,9 +46,15 @@ const dao = {
   // 상세정보 조회
   selectInfo(params) {
     return new Promise((resolve, reject) => {
-      History.findByPk(
-        params.id,
-      ).then((selectedInfo) => {
+      History.findByPk(params.id, {
+        include: [
+          {
+            model: User,
+            as: 'Users',
+            attributes: ['userid', 'name'],
+          },
+        ],
+      }).then((selectedInfo) => {
         resolve(selectedInfo);
       }).catch((err) => {
         reject(err);
