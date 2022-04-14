@@ -1,5 +1,5 @@
 const { Op } = require('sequelize');
-const { History } = require('../models/index');
+const { History, User } = require('../models/index');
 
 const dao = {
   // 등록
@@ -29,6 +29,13 @@ const dao = {
     return new Promise((resolve, reject) => {
       History.findAndCountAll({
         ...setQuery,
+        include: [
+          {
+            model: User,
+            as: 'Users',
+            attributes: { exclude: ['password'] }, // password 필드 제외
+          },
+        ],
       }).then((selectedList) => {
         resolve(selectedList);
       }).catch((err) => {

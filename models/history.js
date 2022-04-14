@@ -6,10 +6,6 @@ module.exports = class History extends Sequelize.Model {
       date: {
         type: Sequelize.DATEONLY,
       },
-      manager: {
-        type: Sequelize.STRING(100),
-        allowNull: false,
-      },
       productsAll: {
         type: Sequelize.INTEGER,
       },

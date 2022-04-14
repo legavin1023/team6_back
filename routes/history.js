@@ -8,7 +8,6 @@ const historyService = require('../service/historyService');
 router.post('/', async (req, res) => {
   try {
     const params = {
-      manager: req.body.manager,
       date: req.body.date,
       productsAll: req.body.productsAll,
       productsGood: req.body.productsGood,
@@ -16,6 +15,7 @@ router.post('/', async (req, res) => {
       remarks: req.body.remarks,
       startAt: req.body.startAt,
       endAt: req.body.endAt,
+      userId: req.body.userId,
     };
     logger.info(`(history.reg.params) ${JSON.stringify(params)}`);
 
@@ -43,6 +43,7 @@ router.get('/', async (req, res) => {
   try {
     const params = {
       id: req.query.id,
+      userid: req.query.userId,
     };
     logger.info(`(history.list.params) ${JSON.stringify(params)}`);
 
