@@ -17,10 +17,6 @@ clientSocket.connect(ADDR) # 서버에 접속을 시도한다.
 
 print('connect is success')
 
-
-
-
-
 cap = cv2.VideoCapture(0) # 0 or 1
 
 readings = [-1, -1]
@@ -43,8 +39,7 @@ detector = cv2.SimpleBlobDetector_create(params)
 
 while True:
     ret, frame = cap.read()
-    
-    
+    # print(ret, frame)
     
     frame_blurred = cv2.GaussianBlur(frame, Gaussian_ksize, 1)
     frame_gray = cv2.cvtColor(frame_blurred, cv2.COLOR_BGR2GRAY)
@@ -81,7 +76,7 @@ while True:
                 except  Exception as e:
                      print(e)
         
-                #cv2.imwrite("After.png", im_with_keypoints)
+                cv2.imwrite("After.png", im_with_keypoints)
                 #cv2.imshow("Dice Reader", im_with_keypoints) #break선언시 실행 불가
                 #break
             sleep(0.3)

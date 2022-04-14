@@ -33,7 +33,7 @@ const dao = {
           {
             model: User,
             as: 'Users',
-            attributes: ['userid'],
+            attributes: ['userid', 'name'],
           },
         ],
       }).then((selectedList) => {
@@ -51,7 +51,7 @@ const dao = {
           {
             model: User,
             as: 'Users',
-            attributes: ['userid'],
+            attributes: ['userid', 'name'],
           },
         ],
       }).then((selectedInfo) => {
