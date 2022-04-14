@@ -16,12 +16,12 @@ const dao = {
   selectList(params) {
     // where 검색 조건
     const setQuery = {};
-    if (params.manager) {
-      setQuery.where = {
-        ...setQuery.where,
-        manager: { [Op.like]: `%${params.manager}%` }, // like검색
-      };
-    }
+    // if (params.manager) {
+    //   setQuery.where = {
+    //     ...setQuery.where,
+    //     manager: { [Op.like]: `%${params.manager}%` }, // like검색
+    //   };
+    // }
 
     // order by 정렬 조건
     setQuery.order = [['id', 'DESC']];
