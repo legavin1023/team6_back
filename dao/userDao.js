@@ -7,7 +7,7 @@ const dao = {
   selectUser(params) {
     return new Promise((resolve, reject) => {
       User.findOne({ // 하나만 찾아줌
-        attributes: ['id', 'userid', 'password', 'name'],
+        attributes: ['id', 'userid', 'password', 'name', 'auth'],
         // 토큰 생성에서 발행한 항목
         where: { userid: params.userid },
         // findOne이 찾을 항목 : userid(id로 대조)

@@ -32,6 +32,7 @@ module.exports = class History extends Sequelize.Model {
       underscored: true, // true: underscored, false: camelCase
       charset: 'utf8', // 문자 포맷
       collate: 'utf8_general_ci', // 문자 포맷(한글인식)
+      paranoid: true, // deletedAt
     });
   }
 
