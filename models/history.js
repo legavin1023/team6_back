@@ -19,10 +19,10 @@ module.exports = class History extends Sequelize.Model {
         type: Sequelize.TEXT,
       },
       startAt: {
-        type: Sequelize.DATE,
+        type: Sequelize.DATEONLY,
       },
       endAt: {
-        type: Sequelize.DATE,
+        type: Sequelize.DATEONLY,
       },
 
     }, {
