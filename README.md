@@ -1,4 +1,4 @@
-# :zap: 에듀키트 디지털 트윈 모니터링 시스템 구축
+# 에듀키트 디지털 트윈 모니터링 시스템 구축
 > **실시간으로 PLC Edukit의 기기를 제어하는 동시에 데이터를 모니터링하는 기기 제어 대시보드 웹 서비스**
 
 ![ezgif-1-e7d022f932](https://user-images.githubusercontent.com/96156114/163900276-60600b71-2074-46ed-9e9f-f837bfad2d33.gif)
@@ -12,7 +12,17 @@
 
 <br/>
 
-## :bulb: System Concept
+## Contents
+- [System Concept](#system-concept)
+- [Architecture](#architecture)
+- [Features](#features)
+- [Installation](#installation)
+- [Used](#used)
+- [Members](#members)
+
+<br/>
+
+## System Concept
 
 **PLC Edukit의 기기를 제어하고 Edukit의 데이터를 모니터링하는 기기 제어 대시보드 웹 서비스**
 
@@ -24,7 +34,7 @@
 
 <br/>
 
-## :pushpin: Architecture
+## Architecture
 
 - 전체 서비스 흐름도
 
@@ -56,7 +66,7 @@
 
 <br/>
 
-## :mag: Features
+## Features
 
 - **불량품 확인 및 체크**
     - edukit의 실시간 데이터를 three.js로 웹에서 확인 가능
@@ -77,7 +87,7 @@
 
 <br/>
 
-## :page_facing_up: Installation
+## Installation
 
 **front**
 
@@ -102,7 +112,7 @@ npm start
 
 <br/>
 
-## :books: Used
+## Used
 
 * [Node.js](https://nodejs.org/)
     * [Sequelize](https://sequelize.org/)
@@ -118,7 +128,7 @@ npm start
 
 <br/>
 
-## :eyes: Members
+## Members
 
 김채은
 + [Github](https://github.com/Dig-Something)
@@ -146,6 +156,7 @@ npm start
 
 <br/>
 
+[▲](#에듀키트-디지털-트윈-모니터링-시스템-구축)
 
 <!-- Markdown link & img dfn's -->
 [npm-image]: https://img.shields.io/badge/npm-v6.14.15-orange?style=flat-square
