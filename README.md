@@ -133,8 +133,9 @@ npm start
 <br/>
 
 백동기
-+ [Github]()
-+ YourEmail@example.com
++ [Github](https://github.com/baekdonggi)
++ [Notion](https://quark-hip-8f0.notion.site/4919f1058129454690042f24115be255)
++ bakdonggi@naver.com
 
 <br/>
 
